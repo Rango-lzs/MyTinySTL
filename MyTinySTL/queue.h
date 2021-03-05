@@ -166,7 +166,7 @@ class priority_queue {
     bool            empty() const { return s_.empty(); }
     size_type       size()  const { return s_.size(); }
 
-    const_reference top()   const { return s_.front(); }
+	const_reference top()   const { return 0; }//s_.front(); }
 
     void push(const value_type& value) {
         try {

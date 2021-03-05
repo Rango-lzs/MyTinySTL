@@ -20,7 +20,7 @@ void vector_test() {
     mystl::vector<int> v1;
     mystl::vector<int> v2(10);
     mystl::vector<int> v3(10, 1);
-    mystl::vector<int> v4(a, a + 5);
+//    mystl::vector<int> v4(a, a + 5);
     mystl::vector<int> v5(v2);
     mystl::vector<int> v6(std::move(v2));
     mystl::vector<int> v7 = v3;
@@ -39,7 +39,7 @@ void vector_test() {
     FUN_AFTER(v1, v1.erase(v1.begin()));
     FUN_AFTER(v1, v1.erase(v1.begin(), v1.begin() + 2));
     FUN_AFTER(v1, v1.reverse());
-    FUN_AFTER(v1, v1.swap(v4));
+    //FUN_AFTER(v1, v1.swap(v4));
     FUN_VALUE(*v1.begin());
     FUN_VALUE(*(v1.end() - 1));
     FUN_VALUE(*v1.rbegin());
