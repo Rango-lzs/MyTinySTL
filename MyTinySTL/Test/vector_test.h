@@ -38,7 +38,7 @@ void vector_test() {
     FUN_AFTER(v1, v1.pop_back());
     FUN_AFTER(v1, v1.erase(v1.begin()));
     FUN_AFTER(v1, v1.erase(v1.begin(), v1.begin() + 2));
-    FUN_AFTER(v1, v1.reverse());
+    //FUN_AFTER(v1, v1.reverse());
     //FUN_AFTER(v1, v1.swap(v4));
     FUN_VALUE(*v1.begin());
     FUN_VALUE(*(v1.end() - 1));

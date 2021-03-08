@@ -99,11 +99,12 @@ public:
 
 	iterator erase(iterator position);
 	iterator erase(iterator first, iterator last);
-	void clear();
+	void clear() { erase(begin(), end()); }
 
-	void resize(size_type new_size);
+	void resize(size_type new_size) { resize(new_size, 0); }//
 	void resize(size_type new_size, const value_type& value);
-	void reverse() { mystl::reverse(begin(), end()); }
+	//void reverse() { mystl::reverse(begin(), end()); }
+	//void   reverse() { mystl::reverse(begin(), end()); }
 	void swap(vector& rhs);
 private:
 	//私有成员
@@ -204,7 +205,7 @@ vector<T, Alloc>& vector<T, Alloc>::operator=(vector&& rhs) {
 
 //free the extra memory
 template<class T, class Alloc>
-void vector<class T,class Alloc>::shrink_to_fit()
+void vector< T, Alloc>::shrink_to_fit()
 {
 	if (finish_ != end_of_storage_)
 	{
@@ -224,7 +225,7 @@ void vector<T, Alloc>::reserve(size_type n)
 		mystl::uninitialized_copy(start_, finish_, tmp);
 		__destroy_and_deallocate();
 		start_ = tmp;
-		finish_ = tem + old_size;
+		finish_ = tmp + old_size;
 		end_of_storage_ = tmp + n;
 	}
 }
@@ -268,7 +269,7 @@ typename vector<T,Alloc>::iterator
 vector<T, Alloc>::insert(iterator position, const value_type &value)
 {
 	auto n = position - begin();
-	if (finish_ != end_of_storage_() && position == end())
+	if (finish_ != end_of_storage_ && position == end())
 	{
 		mystl::construct(finish_, value);
 		++finish_;
@@ -285,7 +286,7 @@ typename vector<T, Alloc>::iterator
 vector<T, Alloc>::insert(iterator position)
 {
 	auto n = position - begin();
-	if (finish_ != end_of_storage_() && position == end())
+	if (finish_ != end_of_storage_ && position == end())
 	{
 		mystl::construct(finish_);
 		++finish_;
@@ -382,7 +383,7 @@ void vector<T, Alloc>::__fill_initialize(size_type n, const value_type &value)
 }
 
 template <class T, class Alloc>
-template<InputIterator>
+template<class InputIterator>
 void vector<T, Alloc>::__range_initialize(InputIterator first, InputIterator last)
 {
 	auto n = last - first;
